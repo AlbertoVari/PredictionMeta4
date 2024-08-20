@@ -18,6 +18,8 @@ df['Polarity'] = df['Tweet'].apply(lambda x: TextBlob(str(x)).sentiment.polarity
 df['Subjectivity'] = df['Tweet'].apply(lambda x: TextBlob(str(x)).sentiment.subjectivity)
 
 # Load the emotion analysis model
+# Jochen Hartmann, "Emotion English DistilRoBERTa-base". https://huggingface.co/j-hartmann/emotion-english-distilroberta-base/, 2022.
+
 emotion_analyzer = pipeline('text-classification', model='j-hartmann/emotion-english-distilroberta-base',top_k=None)
 
 # Function to get the dominant emotion from the Tweet
