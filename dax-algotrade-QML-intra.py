@@ -103,10 +103,10 @@ def quantum_forward(input_data, weights):
         job = estimator.run([(bound_circuit, observable)])
         result = job.result()
 
-        expectation_value = float(result[0].data.evs)  # ✅ Converte in numero Python
+        expectation_value = result[0].data.evs.real  # Assicura che il valore sia reale  # ✅ Converte in numero Python
 
         # ✅ Converti in tensore PyTorch senza errori
-        return torch.tensor([expectation_value], dtype=torch.float32)
+        return torch.tensor([float(expectation_value)], dtype=torch.float32)
 
     except Exception as e:
         print(f"Errore in quantum_forward(): {e}")
